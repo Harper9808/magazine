@@ -1,0 +1,176 @@
+{
+  "login": {
+    "nickname": "유저1",
+    "email": "Testuser@gmail.com",
+    "password": "1234testTest"
+  },
+  "register": {
+    "email": "test7@gmail.com",
+    "nickname": "test7",
+    "password": "test7test7"
+  },
+  "posts": [
+    {
+      "postId": 1,
+      "userId": 2,
+      "title": "제목1",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용1",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 3,
+      "userId": 4,
+      "title": "제목2",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용2",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 5,
+      "userId": 6,
+      "title": "제목3",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용3",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 7,
+      "userId": 8,
+      "title": "제목4",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용4",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 9,
+      "userId": 10,
+      "title": "제목5",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용5",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 11,
+      "userId": 12,
+      "title": "제목1",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용1",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 13,
+      "userId": 14,
+      "title": "제목2",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용2",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 15,
+      "userId": 16,
+      "title": "제목3",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용3",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 17,
+      "userId": 18,
+      "title": "제목17",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용4",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 19,
+      "userId": 20,
+      "title": "제목19",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용19",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 21,
+      "userId": 22,
+      "title": "제목21",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용21",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 23,
+      "userId": 24,
+      "title": "제목23",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용23",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 25,
+      "userId": 26,
+      "title": "제목26",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용26",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 27,
+      "userId": 28,
+      "title": "제목27",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용27",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 29,
+      "userId": 30,
+      "title": "제목29",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용29",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 31,
+      "userId": 32,
+      "title": "제목31",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용31",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 33,
+      "userId": 34,
+      "title": "제목33",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용33",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    },
+    {
+      "postId": 35,
+      "userId": 36,
+      "title": "제목35",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용335",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100"
+    }
+  ]
+}
