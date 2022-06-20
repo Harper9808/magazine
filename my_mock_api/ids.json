@@ -1,0 +1,5 @@
+{
+    "post": "postId",
+    "register": "email",
+    "login":"userId"
+  }

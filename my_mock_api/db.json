@@ -1,0 +1,68 @@
+{
+  "login": [
+    {
+      "id": 2,
+      "email": "yyy@yyy.yy",
+      "password": "7777"
+    },
+    {
+      "email": "yyy@yy.yyy",
+      "nickname": "1234",
+      "password": "12341234y",
+      "id": 5
+    },
+    {
+      "id": 3,
+      "email": "aaa@aaa.aa",
+      "password": "1234"
+    },
+    {
+      "id": 1,
+      "email": "qqq@qqq.qqq",
+      "password": "1234"
+    }
+  ],
+  "register": {
+    "email": "ttt@ttt.tt",
+    "nickname": "1234",
+    "password": "12341234y"
+  },
+  "post": [
+    {
+      "id": 1,
+      "postId": 2,
+      "userId": 1,
+      "title": "제목31",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용31",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100",
+      "likeByMe": false,
+      "likeCount": 4
+    },
+    {
+      "id": 2,
+      "postId": 3,
+      "userId": 1,
+      "title": "제목31",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용31",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100",
+      "likeByMe": false,
+      "likeCount": 4
+    },
+    {
+      "id": 3,
+      "postId": 4,
+      "userId": 1,
+      "title": "제목33",
+      "createdAt": "Thu May 17 2018",
+      "content": "내용33",
+      "layout": "default",
+      "image": "http://via.placeholder.com/100x100",
+      "likeByMe": false,
+      "likeCount": 2
+    }
+  ]
+}
