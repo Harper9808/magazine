@@ -1,0 +1,10 @@
+{
+    "/api/login":"/login",
+    "/api/login:email": "/login:email",
+    "/api/login:id": "/login:id",
+    "/api/login/:id": "/login/:id",
+    "/api/register": "/register",
+    "/api/post":"/post",
+    "/api/post/postId=:postId":"/post?postId=:postId",
+    "/api/post/:id":"/post/:id"
+}

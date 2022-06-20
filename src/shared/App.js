@@ -7,7 +7,7 @@ import PostWrite from '../pages/PostWrite';
 import Signup from '../pages/Signup';
 import Login from '../pages/Login';
 import PostList from '../pages/PostList';
-
+import PostDetail from '../pages/PostDetail';
 
 function App() {
   const [is_login, setIsLogin] = React.useState(false);
@@ -24,21 +24,19 @@ function App() {
   //     dispatch(userActions.loginCheckAPI());
   //   }
   // },[]);
-
-
-  
   return (
     <div className="App">
       <BrowserRouter>
-        <Header/>
+        <Header />
         <Grid margin='85px'/>
         <Grid>
         <Routes>
             <Route path="/" element={<PostList/>}/>
             <Route path="/Login" element={<Login/>} />
             <Route path="/Signup" element={<Signup/>} />
-            <Route path='/PostWrite'  element={<PostWrite/>}/>
-            <Route path="/post" element={<PostItem/>} />
+            <Route path='/post/:id' element={<PostDetail/>}/>
+            <Route path="/postWrite"  element={<PostWrite/>}/>
+            <Route path="/postModify/:id"  element={<PostWrite/>}/>
         </Routes>
         </Grid>
       </BrowserRouter>

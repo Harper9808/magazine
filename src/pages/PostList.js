@@ -8,13 +8,18 @@ import Button from '../components/Button';
 import PostItem from "../components/PostItem";
 import {useNavigate } from "react-router-dom";
 import styled from 'styled-components';
+import { replace } from 'connected-react-router';
+
 
 const PostList = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { list, is_loading, paging } = useSelector((state) => state.post);
 
+  const { list } = useSelector((state) => state.post);
+  const user_info = useSelector((state) => state.user.user);
+  
   useEffect(() => {
+    console.log("test2")
     dispatch(postActions.getPostAxios());
   }, []);
 
@@ -22,12 +27,26 @@ const PostList = (props) => {
     <React.Fragment>
       <Grid padding="12px 0px">
         {list.map((p) => {
+          
+          if (p.userId === user_info?.userId) {
             return (
-              <Grid bg="#ffffff" margin="8px 0px" key={p.postId}>
-                <PostItem {...p} />
+              <Grid bg="#ffffff" margin="8px 0px" key={p.postId}   
+              onClick={()=>{navigate(`/post/${p.postId}`,{replace:true})}}>
+                <PostItem {...p} is_me={p.userId === user_info?.userId} />
               </Grid>
             );
-          })}
+          }
+          else {
+            return(
+              <Grid bg="#ffffff" margin="8px 0px" key={p.postId}   
+              onClick={()=>{navigate(`/post/${p.postId}`,{replace:true})}}>
+            
+                <PostItem {...p} />
+              </Grid>
+            )
+          }
+          })
+        }
           <ButtonF onClick={() => {  navigate("/PostWrite")}}>추가</ButtonF>
       </Grid>
     </React.Fragment>

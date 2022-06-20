@@ -29,14 +29,15 @@ const HeaderSt = styled.div`
 `
 
 const Header = (props) => {
-  const nav =useNavigate()
+  const navigate =useNavigate()
   const is_login = useSelector((state) => state.user.is_login);
   const dispatch = useDispatch();
   if(is_login){
     return(
       <React.Fragment>
       <HeaderSt>
-        <div>
+      <div style={{backgroundColor:'red'}} onClick={() => {navigate('/')}} > 
+        <Button onClick={() => {navigate('/')}}>home</Button>
           <Text bold size="24px">Magazine</Text>
         </div>
         <div>
@@ -51,7 +52,7 @@ const Header = (props) => {
   return (
     <React.Fragment>
       <HeaderSt>
-        <div>
+        <div style={{backgroundColor:'red'}} onClick={() => {navigate('/')}} > 
           <Text
             bold size="24px"
             >Hello, magazine</Text>

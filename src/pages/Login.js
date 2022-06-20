@@ -25,8 +25,9 @@ const Login = () => {
       alert("올바른 이메일 형식을 입력하세요.")
       return;
     }
-    dispatch(userActions.loginAPI(id, pwd))
-    navigate("/")
+    // dispatch(userActions.loginAPI(id, pwd))
+    dispatch(userActions.loginAPI2(id, pwd))
+    navigate("/",{replace:true})
   }
 
   return(

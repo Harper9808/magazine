@@ -1,5 +1,6 @@
 // 리덕스
 import { createAction, handleActions } from "redux-actions";
+import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as imageActions } from "./image";
 import { produce } from "immer";
 // API연결
@@ -33,20 +34,27 @@ const initialState = {
 };
 
 const initialPost = {
-  contents: "testContents_admin",
-  imageUrl: "testUrl_admin",
-  layoutType: "RIGHT",
+  postId:"",
+  title:"",
+  content:"",
+  userId:"",
+  image :"",
+  likeByMe: "",
+  likeCount: 0,
+  createdAt: "",
+  layout: "",
 };
 
 // 미들웨어
 export const getPostAxios = () => {
-
   return function (dispatch) {
-    API.get('/posts')
+    API.get('api/post')
       .then((res) => {
+        console.log("getPostAxios res",res)
+        //서버  dispatch(getPost(res.data.result.post_list));
         dispatch(getPost(res.data));
       })
-      .catch((err) => console.log("getPostAxios::: ", err.response));
+      .catch((err) => console.log("getPostAxiosERR?::: ", err.response));
   };
 };
 
@@ -57,8 +65,23 @@ const getOnePostAxios = (postId) => {
     API.get(`api/post/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true,
+        }
+      })
+      .then((res) => {
+        dispatch(getOnePost(res.data));
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+};
+const getOnePostAxios2 = (postId) => {
+  const token=localStorage.getItem('is_login')
+  return function (dispatch) {
+    API.get(`api/post/${postId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
       })
       .then((res) => {
         dispatch(getOnePost(res.data));
@@ -69,19 +92,17 @@ const getOnePostAxios = (postId) => {
   };
 };
 const addPostAxios = (contents = "", layout = "") => {
-  const token=localStorage.getItem('is_login')
+  const token=localStorage.getItem('token')
   return function (dispatch, getState) {
     const _user = getState().user.user;
     const user_info = {
       nickname: _user.nickname,
     };
-
     const _post = {
       ...initialPost,
       contents: contents,
       layoutType: layout,
     };
-
     const _image = getState().image.preview;
     const postData = { ..._post, imageUrl: "" };
     API.post("api/post", postData, {
@@ -101,78 +122,60 @@ const addPostAxios = (contents = "", layout = "") => {
 
 }
 }
-    // const _upload = storage
-    //   .ref(`images/${user_info.nickname}_${new Date().getTime()}`)
-    //   .putString(_image, "data_url");
 
-    // _upload.then((snapshot) => {
-    //   snapshot.ref
-    //     .getDownloadURL()
-    //     .then((url) => {
-    //       dispatch(imageActions.uploadImage(url));
-    //       return url;
-    //     })
-    //     .then((url) => {
-    //       const postData = { ..._post, imageUrl: url };
-    //       API
-    //         .post("api/post", postData, {
-    //           headers: {
-    //             Authorization: `Bearer ${token}`,
-    //           },
-    //           withCredentials: true,
-    //         })
-    //         .then((doc) => {
-    //           dispatch(addPost(doc.data));
-    //           dispatch(imageActions.setPreview(null));
-    //         })
-    //         .catch((err) => {
-    //           window.alert("앗! 글쓰기에 문제가 있어요!");
-    //           console.log("글작성API::::: ", err.response);
-    //         });
-    //     })
-    //     .catch((err) => {
-    //       window.alert("앗! 이미지 업로드에 문제가 있어요!");
-    //       console.log("글작성API::::: ", err.response);
-    //     });
-    // });
-  // };
-// };
+const addPostAxiosAPI = (content,path) => {
+  const token=localStorage.getItem('token')
+  return function (dispatch, getState) {
+    API.post(path, content, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
 
-const updatePostAxios = (postId = null, post = {}) => {
-  const token=localStorage.getItem('is_login')
-  return function (dispatch, getState, { history }) {
-    if (!postId) {
-      console.log("게시물 정보가 없어요!");
-      return;
-    }
+    })
+    .catch((err) => {
+      window.alert("앗! 글쓰기에 문제가 있어요!");
+      console.log("글작성API::::: ", err.response);
+    });
 
-    const _image = getState().image.preview;
-    // const _postIdx = getState().post.list.find((p) => p.postId === postId);
-    const _post = getState().post.list[0];
-    console.log(_post)
-    const updatePostData = {
-      ...post,
-      imageUrl: _post.imageUrl,
-    };
-
-    if (_image === _post.imageUrl) {
-      API
-        .put(`api/post/${postId}`, updatePostData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        })
-        .then((res) => {
-          console.log(updatePost(postId, updatePostData))
-          dispatch(updatePost(postId, updatePostData));
-        })
-        .catch((err) => console.log("업데이트 게시글::::: ", err.response));
-      return;
-    }
-  }
+}
 }
  
+const updatePostAxios2=(data,id)=>{
+  return function(dispatch){
+    API.patch(`/api/post/${id}`,data,{
+      headers: {
+        'Content-Type': 'application/json'},
+  })
+    .then((res)=>{
+      console.log(res)
+    })
+  }
+
+}
+const updatePostAxios = (formdata,postId,path) => {
+  const token=localStorage.getItem('token')
+  return function (dispatch, getState) {
+    API.post(path, formdata, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      console.log("수정하기")
+      const data = {
+        content : formdata.content,
+        layout:formdata.laout,
+        image: formdata.image
+      }
+      dispatch(updatePost(postId, data));
+    })
+    .catch((err) => console.log("업데이트 게시글::::: ", err.response));
+    };
+}
     // else {} : 이미지 주소 갱신하고 업데이트 
       // const _upload = storage
       //   .ref(`images/${postId}_${new Date().getTime()}`)
@@ -210,20 +213,19 @@ const updatePostAxios = (postId = null, post = {}) => {
 //   };
 // };
 
-const deletePostAxios = (postId = null) => {
-  const token=localStorage.getItem('is_login')
-  return function (dispatch, getState, { history }) {
+const deletePostAxios = (postId) => {
+  const token=localStorage.getItem('token')
+  return function (dispatch) {
     if (!postId) {
       console.log("게시물 정보가 없어요!");
       return;
     }
-
     API
       .delete(`api/post/${postId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
-        withCredentials: true,
       })
       .then(() => {
         dispatch(deletePost(postId));
@@ -231,12 +233,20 @@ const deletePostAxios = (postId = null) => {
       .catch((err) => console.log("게시글삭제::::: ", err.response));
   };
 };
-
+const deletePostAxios2 = (postId) => {
+  return function (dispatch) {
+    API.delete(`/api/post/${postId}`).then((res) =>  {
+        console.log("삭제",res)
+        dispatch(deletePost(postId));
+      })
+      .catch((err) => console.log("게시글삭제::::: ", err.response));
+  };
+};
 export default handleActions(
     {
       [GET_POST]: (state, action) =>
         produce(state, (draft) => {
-          draft.list.push(...action.payload.post_list);
+          draft.list=action.payload.post_list
         }), 
       [GET_ONE_POST]: (state, action) =>
         produce(state, (draft) => {
@@ -264,13 +274,17 @@ export default handleActions(
   const actionCreators = {
     getPost,
     getOnePost,
+    getOnePostAxios2,
     addPost,
+    addPostAxiosAPI,
     updatePost,
     deletePost,
     getPostAxios,
     getOnePostAxios,
     addPostAxios,
     updatePostAxios,
+    updatePostAxios2,
     deletePostAxios,
+    deletePostAxios2
   };
   export { actionCreators };

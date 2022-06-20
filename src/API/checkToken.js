@@ -1,7 +1,9 @@
 // import axios  from 'axios';
+// import jwtDecode from 'jwt-decode'
+
 
 // export const checkToken = async (config) => {
-// let accessToken = localStorage.getItem('is_login')
+// let accessToken = localStorage.getItem('token')
 // var jwt = require('jsonwebtoken');
 // const decode = jwt.decode(accessToken);
 // const nowDate = new Date().getTime() / 1000;    

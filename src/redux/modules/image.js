@@ -7,23 +7,19 @@ const UPLOAD_IMAGE = "UPLOAD_IMAGE";
 const SET_PREVIEW = "SET_PREVIEW";
 
 const uploading = createAction(UPLOADING, (uploading) => ({ uploading }));
-const uploadImage = createAction(UPLOAD_IMAGE, (image_url) => ({ image_url }));
+const uploadImage = createAction(UPLOAD_IMAGE, (image) => ({ image }));
 const setPreview = createAction(SET_PREVIEW, (preview) => ({ preview }));
 
 
 // initial state
 const initialState = {
-    image_url: "",
+    image: "",
     uploading: false,
-    preview: "aa",
-
-    
+    preview: "",
   };
 export function uploadImageAPI(image) {
     return function (dispatch) {
-      console.log("test",image.preview)
       dispatch(setPreview(image.preview));
-      
       // const _upload = storage.ref(`images/${image.name}`).put(image);
   
       // //   업로드!
@@ -47,8 +43,7 @@ export function uploadImageAPI(image) {
     {
       [UPLOAD_IMAGE]: (state, action) =>
         produce(state, (draft) => {
-          draft.image_url = action.payload.image_url;
-          draft.uploading = false;
+          draft.image = action.payload.image;
         }),
   
       [UPLOADING]: (state, action) =>
@@ -58,7 +53,7 @@ export function uploadImageAPI(image) {
   
       [SET_PREVIEW]: (state, action) =>
       produce(state, (draft) => {
-        
+        console.log("priview",action.payload.preview)
         draft.preview = action.payload.preview;
       }),
     },

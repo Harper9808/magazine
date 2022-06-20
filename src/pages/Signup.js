@@ -46,9 +46,8 @@ const Signup = (props) => {
       return;
     }
 
-    dispatch(userActions.signInAPI(id, pwd, user_name))
+    dispatch(userActions.signUpAPI(id, pwd, user_name))
     navigate("/login")
-    
   }
   return(
     <React.Fragment>
